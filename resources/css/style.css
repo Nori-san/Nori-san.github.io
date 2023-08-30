@@ -232,12 +232,12 @@ nav .nav-links a {
   }
 
   .start-here h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .start-here p,
   .start-here a {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 }
 

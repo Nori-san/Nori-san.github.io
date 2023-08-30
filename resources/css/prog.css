@@ -1,0 +1,29 @@
+.wrapper {
+  max-width: 1000px;
+  width: 60%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.frontend,
+.fullstack,
+.website {
+  background-color: #ddd;
+  text-align: right;
+}
+
+.backend,
+.iOS,
+.datasci {
+  background-color: #eec900;
+}
+
+.datasci {
+  margin-bottom: 0.5rem;
+}

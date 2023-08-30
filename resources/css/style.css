@@ -64,13 +64,14 @@ nav {
   width: 25%;
   color: #fff;
   font-size: 2rem;
+  padding-top: 1.25rem;
 }
 
 .logo img {
   width: 3.5rem;
 }
 
-nav .logo p span {
+.logo p span {
   color: #000;
 }
 
@@ -543,10 +544,25 @@ a {
 /*Footer section*/
 .footer-container {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
   background-color: #eec900;
   margin-top: auto;
+}
+
+.footer-container .copyright {
+  padding-top: 1rem;
+}
+
+/*Media Query for Mobile*/
+@media only screen and (min-width: 200px) and (max-width: 600px) {
+  .copyright,
+  .terms a {
+    font-size: 0.75rem;
+  }
+
+  .footer-container .copyright {
+    padding-top: 1rem;
+  }
 }

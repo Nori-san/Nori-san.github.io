@@ -169,8 +169,8 @@ nav .nav-links a {
 }
 
 .start-here p,
-a {
-  font-size: 2rem;
+.start-here a {
+  font-size: 1.5rem;
 }
 
 #start-here-button {
@@ -190,6 +190,7 @@ a {
   color: #fff;
 }
 
+/*Media Query for Tablet*/
 @media only screen and (min-width: 601px) {
   #start-here-button {
     display: flex;
@@ -207,11 +208,6 @@ a {
 
   .start-here h2 {
     font-size: 3rem;
-  }
-
-  .start-here p,
-  a {
-    font-size: 1.5rem;
   }
 }
 
@@ -233,6 +229,15 @@ a {
   .banner-container img {
     width: 100%;
     margin: 0;
+  }
+
+  .start-here h2 {
+    font-size: 2rem;
+  }
+
+  .start-here p,
+  .start-here a {
+    font-size: 1rem;
   }
 }
 
@@ -292,7 +297,7 @@ h3 {
 }
 
 .box p,
-a {
+.box a {
   font-size: 1.5rem;
 }
 
@@ -358,9 +363,13 @@ a {
     padding-bottom: 1rem;
   }
 
+  .box h3 {
+    font-size: 2rem;
+  }
+
   .box-content p,
   .box-content a {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .content-2-box .desktop-img {
@@ -407,6 +416,7 @@ a {
 
 .program:hover {
   transform: scale(1.075);
+  background-color: #e6e6e6;
 }
 
 .program img {
@@ -552,7 +562,7 @@ a {
 }
 
 .footer-container .copyright {
-  padding-top: 1rem;
+  padding-top: 1.5rem;
 }
 
 /*Media Query for Mobile*/
@@ -563,6 +573,6 @@ a {
   }
 
   .footer-container .copyright {
-    padding-top: 1rem;
+    padding-top: 1.5rem;
   }
 }

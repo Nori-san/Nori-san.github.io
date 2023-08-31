@@ -48,6 +48,10 @@ nav {
   flex-direction: column;
 }
 
+.dropdown-content a:hover {
+  background-color: #bfa301;
+}
+
 .nav-container {
   display: flex;
   flex-direction: row;
@@ -78,6 +82,7 @@ nav {
 nav .nav-links a {
   color: #000;
   padding-left: 2rem;
+  font-size: 1.75rem;
 }
 
 /*Media Query for Desktop*/
@@ -188,6 +193,7 @@ nav .nav-links a {
 
 #start-here-button:hover {
   color: #fff;
+  background-color: #bfa301;
 }
 
 /*Media Query for Tablet*/
@@ -256,7 +262,7 @@ nav .nav-links a {
 /* content-box */
 .content-box {
   width: 60%;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
 }
 
 .content-box img {
@@ -323,11 +329,11 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .content-box img {
-    width: 75%;
+    width: 100%;
     max-width: 100%;
     height: auto;
   }
@@ -501,18 +507,23 @@ h3 {
 /*Main Article*/
 .project-main {
   width: 60%;
-  padding-right: 1.5rem;
+  padding-right: 1rem;
+}
+
+.project-main .text {
+  padding: 1.5rem;
 }
 
 .project-container video {
   width: 100%;
+  padding: 1.5rem;
 }
 
 /*Sidebar*/
 .project-container aside {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 38%;
   border-bottom: none;
 }
 
@@ -525,12 +536,12 @@ h3 {
 
 .project-block img {
   height: auto;
-  width: 35%;
-  margin: 1rem;
+  width: 30%;
+  margin: 1.5rem;
 }
 
 .project-block .text {
-  padding: 0 0.5rem;
+  margin: 1.5rem;
 }
 
 .project-block:hover {
@@ -550,7 +561,6 @@ h3 {
 
   .project-main {
     width: 100%;
-    padding: 0;
   }
 }
 

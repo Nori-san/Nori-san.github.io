@@ -5,6 +5,11 @@
     <title>LionAcademy/Orientation-date</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="resources/css/style-orientation.css"
+    />
     <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
     <link
       rel="stylesheet"
@@ -28,12 +33,12 @@
           <div class="dropdown">
             <a href="programs.html">Programs</a>
             <div class="dropdown-content">
-              <a href="#">Front-End Developer</a>
-              <a href="#">Back-End Developer</a>
-              <a href="#">Full Stack Developer</a>
-              <a href="#">iOS Developer</a>
-              <a href="#">Website Design</a>
-              <a href="#">Data Scientist</a>
+              <a href="programs.html#frontend">Front-End Developer</a>
+              <a href="programs.html#backend">Back-End Developer</a>
+              <a href="programs.html#fullstack">Full Stack Developer</a>
+              <a href="programs.html#iOS">iOS Developer</a>
+              <a href="programs.html#website">Website Design</a>
+              <a href="programs.html#datasci">Data Scientist</a>
             </div>
           </div>
 
@@ -50,19 +55,9 @@
             ><img src="resources/images/ic-logo.svg" alt="lion icon"
           /></a>
 
-          <div class="dropdown">
-            <a href="./programs.html"
-              ><img src="resources/images/ic-online.svg" alt="computer icon"
-            /></a>
-            <div class="dropdown-content">
-              <a href="#">Front-End Developer</a>
-              <a href="#">Back-End Developer</a>
-              <a href="#">Full Stack Developer</a>
-              <a href="#">iOS Developer</a>
-              <a href="#">Website Design</a>
-              <a href="#">Data Scientist</a>
-            </div>
-          </div>
+          <a href="./programs.html"
+            ><img src="resources/images/ic-online.svg" alt="computer icon"
+          /></a>
 
           <a href="campus.html"
             ><img src="resources/images/ic-on-campus.svg"
@@ -74,9 +69,10 @@
       </div>
     </nav>
 
-    <div class="container">
-      <article>
-        <section>
+    <!-----------------------Main Content--------------------------->
+    <article>
+      <div class="container-fluid">
+        <section id="summarySec">
           <h1>Information Session</h1>
           <p>
             Get ready to embark on an exhilarating journey into the realm of
@@ -91,75 +87,92 @@
             required for this session.
           </p>
         </section>
+      </div>
 
-        <h2>
-          Ready to become the coding star? Join us at our next programming
-          course!
-        </h2>
-        <form>
-          <div class="form-group">
-            <label for="InputCourse">Course Selection</label>
-            <select
-              class="form-control"
-              id="InputCourse"
-              name="Select a course"
-            >
-              <option value="1">Front-End Developer</option>
-              <option value="2">Back-End Developer</option>
-              <option value="3">Full Stack Developer</option>
-              <option value="4">IOS Developer</option>
-              <option value="5">Website Designer</option>
-              <option value="6">Date Scientist</option>
-            </select>
-          </div>
+      <div class="container">
+        <section id="formSec">
+          <h2>
+            Ready to become a coding star? Join us at our next information
+            session!
+          </h2>
+          <!-----------------------Info session sign up form--------------------------->
+          <form>
+            <div class="form-group">
+              <label for="InputCourse">Course Selection</label>
+              <select
+                class="form-control"
+                id="InputCourse"
+                name="Select a course"
+              >
+                <option value="1">Front-End Developer</option>
+                <option value="2">Back-End Developer</option>
+                <option value="3">Full Stack Developer</option>
+                <option value="4">IOS Developer</option>
+                <option value="5">Website Designer</option>
+                <option value="6">Date Scientist</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <label for="InputEmail">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="InputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-            <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else.</small
-            >
-          </div>
+            <div class="form-group">
+              <label for="InputEmail">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="InputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >We'll never share your email with anyone else.</small
+              >
+            </div>
 
-          <div class="form-group">
-            <label for="InputName">Full Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="InputName"
-              placeholder="Enter full name"
-            />
-          </div>
+            <div class="form-group">
+              <label for="InputName">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="InputName"
+                placeholder="Enter full name"
+              />
+            </div>
 
-          <div class="form-group">
-            <label for="InputDate">Information Session Date</label>
-            <select class="form-control" id="InputDate" name="Select a Date">
-              <option value="1">September 12th, 2023</option>
-              <option value="2">September 15th, 2023</option>
-              <option value="3">September 18th, 2023</option>
-            </select>
-          </div>
+            <div class="form-group">
+              <label for="InputDate">Information Session Date</label>
+              <select class="form-control" id="InputDate" name="Select a Date">
+                <option value="1">September 12th, 2023</option>
+                <option value="2">September 15th, 2023</option>
+                <option value="3">September 18th, 2023</option>
+              </select>
+            </div>
 
-          <div class="form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            />
-            <label class="form-check-label" for="exampleCheck1"
-              >Receive announcements related to Lions Academy. You may opt-out
-              at any time.</label
-            >
-          </div>
-          <button type="submit" class="btn btn-primary">Reserve my Spot</button>
-        </form>
-      </article>
-    </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="Check1" />
+              <label class="form-check-label" for="Check1"
+                >Receive announcements related to Lions Academy. You may opt-out
+                at any time.</label
+              >
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Reserve my Spot
+            </button>
+          </form>
+        </section>
+      </div>
+    </article>
+
+    <!------------------Footer section------------------>
+    <footer>
+      <div class="footer-container">
+        <div class="copyright">
+          <p>©2023 Lions Academy. All rights reserved</p>
+        </div>
+
+        <div class="terms">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

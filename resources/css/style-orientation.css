@@ -1,0 +1,40 @@
+article {
+  background-color: #36454f !important;
+  margin-top: 0.5%;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 3% 6%;
+  color: white;
+}
+
+section {
+  text-align: center;
+}
+
+#formSec h2 {
+  margin-bottom: 2%;
+}
+
+#summarySec {
+  color: #36454f;
+  background-color: #eec900;
+  margin-top: 2%;
+  padding: 2% 18%;
+  border-radius: 10px;
+}
+
+#summarySec p {
+  font-size: large;
+}
+
+#summarySec h2 {
+  font-weight: 550;
+}
+
+@media (max-width: 800px) {
+  #summarySec {
+    display: none;
+  }
+}

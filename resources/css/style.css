@@ -81,7 +81,7 @@ nav {
 
 nav .nav-links a {
   color: #000;
-  padding-left: 2rem;
+  padding-left: 3rem;
   font-size: 1.75rem;
 }
 
@@ -169,6 +169,7 @@ nav .nav-links a {
 }
 
 /*start here Button section*/
+
 .start-here h2 {
   font-size: 4rem;
 }
@@ -278,7 +279,7 @@ nav .nav-links a {
   margin-bottom: 1.5rem;
 }
 
-.content-box #cite {
+#cite {
   font-size: 1rem;
 }
 
@@ -299,7 +300,6 @@ h3 {
 }
 
 /* Aside Section */
-
 .box {
   display: flex;
   flex-direction: row;
@@ -394,6 +394,7 @@ h3 {
 }
 
 /*Start learning Section*/
+
 .learning-container {
   display: flex;
   flex-direction: column;
@@ -565,13 +566,14 @@ h3 {
 }
 
 /*Footer section*/
+
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
   background-color: #eec900;
-  margin-top: auto;
+  margin-top: 0.4rem;
 }
 
 .footer-container .copyright {

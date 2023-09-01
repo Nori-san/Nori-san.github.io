@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair_Display&display=swap");
+
+header {
+  padding: 0.5%;
+  text-align: center;
+  /* text-decoration: underline; */
+  border-radius: 10px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.2%;
+  font-family: Playfair Display, serif;
+}
+
+.staff {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.staff2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.staff p,
+ul {
+  font-size: large;
+}
+.staff2 p,
+ul {
+  font-size: large;
+}
+
+.staffDesc {
+  padding-top: 6%;
+}
+
+.staff {
+  flex-direction: row-reverse;
+  justify-content: left;
+  background-color: #eec900;
+  margin-right: 20%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.staff2 {
+  flex-direction: row;
+  justify-content: right;
+  background-color: #ddd;
+  margin-left: 20%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.staff img {
+  margin-right: 1%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.staff2 img {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .staff {
+    margin-top: 3%;
+    border-top-right-radius: 15px;
+  }
+
+  .staff2 {
+    margin-top: 3%;
+    border-top-left-radius: 15px;
+  }
+
+  .staff img {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .staff2 img {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}

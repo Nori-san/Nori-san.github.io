@@ -242,7 +242,7 @@ nav .nav-links a {
   }
 
   .start-here p {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .start-here a {
@@ -250,52 +250,57 @@ nav .nav-links a {
   }
 }
 
-/*More Information section*/
+/*Information section*/
 
 .main-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 1rem 0 2rem 1.5rem;
   background-color: #f3f5f5;
 }
 
-/* content-box */
-.content-box {
+.main-container .row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* content-left */
+.main-container .content-left {
   width: 60%;
   padding: 1.5rem;
 }
 
-.content-box img {
+.content-left img {
   width: 100%;
 }
 
-.content-box h2 {
-  margin-bottom: 1.5rem;
-}
-
-.content-box p {
+.content-left p {
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem auto;
 }
 
 #cite {
   font-size: 1rem;
 }
 
-/* content-2-box */
-.content-2-box {
-  width: 40%;
+/* content-right */
+.content-right {
+  display: flex;
+  flex-direction: column;
+  width: 38%;
 }
 
-.content-2-box p,
-h3 {
-  margin-bottom: 0.5rem;
+.content-right .text {
+  margin: 1.5rem;
 }
 
-.desktop-img {
+.content-right .img {
   width: 30%;
   height: auto;
-  margin: 1.5rem 1rem 1rem 1rem;
+  margin: 1.5rem;
 }
 
 /* Aside Section */
@@ -325,20 +330,20 @@ h3 {
 
 /*Media Query for Tablets*/
 @media only screen and (min-width: 720px) and (max-width: 1000px) {
-  .content-box {
+  .content-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
   }
 
-  .content-box img {
+  .content-left img {
     width: 100%;
     max-width: 100%;
     height: auto;
   }
 
-  .content-box h2 {
+  .content-left h2 {
     font-size: 2.5rem;
   }
 
@@ -349,47 +354,39 @@ h3 {
 
 /*Media Query for Mobile*/
 @media only screen and (min-width: 200px) and (max-width: 600px) {
-  .main-container {
-    padding: 1rem 1rem 0rem;
-  }
-
-  .content-box {
+  .content-left {
     display: none;
   }
 
-  .content-2-box {
+  .content-right {
     width: 100%;
-    border: none;
+    margin: 0 1.5rem 0 0;
   }
 
   .box {
     display: block;
-    padding: 2rem auto;
+    width: 100%;
+    padding: 1rem auto;
     text-align: center;
   }
 
-  .box-content {
-    padding-bottom: 1rem;
+  .text {
+    margin: 1.5rem;
   }
 
-  .box h3 {
+  .text h3 {
     font-size: 2rem;
   }
 
-  .box-content p,
-  .box-content a {
-    font-size: 1rem;
+  .text p,
+  .text a {
+    font-size: 1.5rem;
   }
 
-  .content-2-box .desktop-img {
-    display: none;
-  }
-
-  .content-2-box .mobile-img {
-    display: block;
-    width: 25rem;
+  .content-right .img {
+    width: 70%;
     margin: 0 auto;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
   }
 }
 
@@ -397,7 +394,7 @@ h3 {
 .learning-container {
   display: flex;
   flex-direction: column;
-  padding: 2rem 4.5rem;
+  padding: 1rem 3rem;
   background-color: #36454f;
   margin-top: 4px;
 }
@@ -424,7 +421,7 @@ h3 {
 }
 
 .program:hover {
-  transform: scale(1.075);
+  transform: translateY(-1rem);
   background-color: #e6e6e6;
 }
 
@@ -470,29 +467,30 @@ h3 {
     display: none;
   }
 
-  .programs-container .program p {
-    display: none;
-  }
-
   .program {
-    width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
   }
 
   .program .text p {
     display: none;
-    width: 100%;
+  }
+
+  .program:hover {
+    transform: scale(1.075);
   }
 }
 
-/*Project Exhibit*/
+/*Project*/
 
 .project-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0 2rem 1.5rem;
+  padding: 1rem 0 2rem 1.5rem;
   background-color: #f3f5f5;
   border-bottom: 4px #fff solid;
   margin-top: 4px;
@@ -505,13 +503,19 @@ h3 {
 }
 
 /*Main Article*/
-.project-main {
+.project-left {
   width: 60%;
   padding-right: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-main .text {
-  padding: 1.5rem;
+.project-left .text {
+  padding: 0 1.5rem;
+}
+
+.project-left .text h3 {
+  margin-top: 0.5rem;
 }
 
 .project-container video {
@@ -520,15 +524,14 @@ h3 {
 }
 
 /*Sidebar*/
-.project-container aside {
+.project-container .project-right {
   display: flex;
   flex-direction: column;
   width: 38%;
   border-bottom: none;
 }
 
-#Fisma,
-#proj-example {
+.project-block {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -551,16 +554,25 @@ h3 {
 
 /*Media Query for Mobile*/
 @media only screen and (min-width: 200px) and (max-width: 600px) {
-  .project-container aside {
+  .project-container .project-right {
     display: none;
   }
 
-  .project-main .text {
+  .project-left .text {
     display: none;
   }
 
-  .project-main {
+  .project-left {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-container video {
+    width: 100%;
+    margin: 0 auto;
   }
 }
 

@@ -277,7 +277,7 @@ button:hover {
     width: 90%;
   }
 
-  .contactus,
+  .contact,
   .location {
     display: flex;
     flex-direction: column;
@@ -285,10 +285,15 @@ button:hover {
     justify-content: center;
   }
 
+  .contact {
+    width: 90%;
+  }
+
   input,
   textarea,
   button {
-    width: 90%;
+    width: 100%;
+    padding: 0 1.5rem;
   }
 }
 

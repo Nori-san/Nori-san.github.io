@@ -192,8 +192,8 @@ textarea:hover {
 }
 
 button {
-  width: 50rem;
-  height: 40px;
+  width: 35rem;
+  height: 4rem;
   border: 1px solid #000;
   background-color: #eec900;
   font-size: 15px;
@@ -249,7 +249,7 @@ button:hover {
     transform: translateY(35rem);
   }
 
-  .development img,
+  .developmbent img,
   .future img {
     display: none;
   }
@@ -286,9 +286,8 @@ button:hover {
   }
 
   input,
-  textarea,
-  button {
-    width: 40rem;
+  textarea {
+    width: 90%;
   }
 }
 

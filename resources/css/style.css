@@ -4,8 +4,6 @@
 
 body {
   font-family: "Montserrat";
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 /*Logo and Nav section*/
@@ -148,6 +146,7 @@ nav .nav-links a {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 0 1.5rem;
   background-color: #36454f;
   border-bottom: 4px #fff solid;
 }
@@ -279,7 +278,7 @@ nav .nav-links a {
 
 .content-left p {
   font-size: 1.5rem;
-  margin: 1.5rem auto;
+  margin: 1.5rem 0;
 }
 
 #cite {
@@ -395,6 +394,7 @@ nav .nav-links a {
   display: flex;
   flex-direction: column;
   padding: 1rem 3rem;
+  margin: 0 1.5rem;
   background-color: #36454f;
   margin-top: 4px;
 }
@@ -490,7 +490,7 @@ nav .nav-links a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0 2rem 1.5rem;
+  padding: 1rem 1.5rem 2rem 1.5rem;
   background-color: #f3f5f5;
   border-bottom: 4px #fff solid;
   margin-top: 4px;

@@ -1,21 +1,20 @@
+/* History */
 .campus-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid #fff;
-  width: 580px;
-  height: 450px;
+  width: 1000px;
+  height: 80vh;
   background-image: url("../images/build-3.jpg");
-  background-position: center;
-  background-size: contain;
+  background-position: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.5s ease;
-  margin: auto;
-  margin-top: 36px;
-  margin-bottom: 100px;
+  margin: 5rem auto;
 }
 
 .campus-container:hover,
@@ -24,7 +23,7 @@
 }
 
 .campus-content {
-  padding: 24px;
+  padding: 1rem;
   background: linear-gradient(
     hsl(0 0% 0% / 0),
     hsl(20 0% 0% / 0.3) 20%,
@@ -33,6 +32,7 @@
 }
 
 .campus-title {
+  font-size: 5rem;
   color: #fff;
   position: relative;
   width: max-content;
@@ -56,14 +56,14 @@
 }
 
 .campus-text {
-  font-size: 16px;
-  padding: 40px 0;
+  font-size: 1.5rem;
+  padding: 2rem 0;
   color: #fff;
 }
 
 @media (hover) {
   .campus-content {
-    transform: translateY(65%);
+    transform: translateY(60%);
     transition: transform 0.5s ease;
   }
 
@@ -89,95 +89,231 @@
   }
 }
 
-/*Media Query for Mobile*/
-@media only screen and (min-width: 200px) and (max-width: 600px) {
-  .campus-container {
-    width: 100%;
-  }
+/* History Text */
+.bubble {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-/*Media Query for Tablets*/
-@media only screen and (min-width: 720px) and (max-width: 1000px) {
-  .campus-container {
-    width: 580px;
-  }
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
+.founder {
   display: flex;
   flex-direction: column;
-  align-items: stretch
+  align-items: center;
+  justify-content: center;
 }
 
-.bubble {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 10px 0;
-  display: flex;
-  align-items: flex-start;
+.founder img {
+  height: 15rem;
+  text-align: center;
+  border-radius: 5rem;
 }
 
 .bubble img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  margin-right: 20px
+  max-width: 400px;
+  width: 20%;
+  align-content: center;
+  padding: 1.5rem;
 }
 
-.bubble p {
-  margin: 0;
-  color: #333;
-  flex: 1;
+/* location */
+.location {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem auto;
+  font-size: 1.5rem;
+  background-color: #f3f5f5;
 }
 
-.contact-section {
+.location h2 {
+  padding-top: 2rem;
+}
+
+.fas {
+  color: #36454f;
+  margin: 1.5rem auto;
+  font-size: 2.5rem;
+}
+
+.phone {
+  padding-bottom: 1.5rem;
+}
+
+/* Contact us form */
+.contactus {
+  width: 100%;
+  margin: 1.5 auto;
+  padding: 2rem auto;
+}
+
+.contact {
+  background-color: #36454f;
+  padding: 2rem;
+  margin: 1.5rem auto;
+  justify-content: center;
+}
+
+.contact h2 {
+  color: #fff;
+}
+
+.contact p {
+  color: #fff;
+  margin: 1.5rem 0 0 0;
+}
+
+input {
+  width: 50rem;
   background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 400px;
-  float: right;
+  height: 40px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: none;
+  padding-top: 1rem;
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
+input:hover {
+  border: 3px solid #eec900;
 }
 
-.form-field {
-  margin-bottom: 15px;
+textarea {
+  width: 50rem;
+  height: 25rem;
+  background-color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  padding-top: 10px;
 }
 
-.form-field label {
-  font-weight: bold;
-}
-
-.form-field input,
-.form-field textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.form-field textarea {
-    resize: vertical;
+textarea:hover {
+  border: 3px solid #eec900;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 50rem;
+  height: 40px;
+  border: 1px solid #000;
+  background-color: #eec900;
+  font-size: 15px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+button:hover {
+  border: 3px solid #eec900;
+  opacity: 0.85;
+}
+
+/* social media */
+.social-media {
+  margin: 1.5rem auto;
+  width: 100%;
+  padding-top: 0.5rem;
+}
+
+#social-media-icon {
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
+}
+
+#social-media-icon:hover {
+  opacity: 0.7;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+}
+
+/*Media Query for Mobile*/
+@media only screen and (min-width: 200px) and (max-width: 600px) {
+  .campus-container {
+    width: 95%;
+    height: 40vh;
+    margin: 0 auto;
+    padding: 1.5rem auto;
+    overflow: scroll;
+  }
+
+  .campus-title {
+    font-size: 3rem;
+  }
+
+  .campus-content {
+    transform: translateY(60%);
+  }
+
+  .campus-container:hover .campus-content,
+  .campus-container:focus-within .campus-content {
+    transform: translateY(30rem);
+  }
+
+  .development img,
+  .future img {
+    display: none;
+  }
+
+  .founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .development {
+    width: 90%;
+    padding: 0 1.5rem;
+  }
+
+  .future {
+    width: 90%;
+    padding: 0 1.5rem;
+  }
+
+  .location img {
+    width: 90%;
+  }
+
+  .contactus,
+  .location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input,
+  textarea,
+  button {
+    width: 45rem;
+  }
+}
+
+/*Footer section*/
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #eec900;
+  margin-top: 0.4rem;
+}
+
+.footer-container .copyright {
+  padding-top: 1.5rem;
+}
+
+/*Media Query for Mobile*/
+@media only screen and (min-width: 200px) and (max-width: 600px) {
+  .copyright,
+  .terms a {
+    font-size: 0.75rem;
+  }
+
+  .footer-container .copyright {
+    padding-top: 1.5rem;
+  }
 }

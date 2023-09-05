@@ -133,7 +133,7 @@
 .fas {
   color: #36454f;
   margin: 1.5rem auto;
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .phone {
@@ -214,16 +214,16 @@ button:hover {
 }
 
 #social-media-icon {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   padding: 1rem;
 }
 
 #social-media-icon:hover {
   opacity: 0.7;
-  width: 42px;
-  height: 42px;
-  padding: 10px;
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
 }
 
 /*Media Query for Mobile*/
@@ -246,7 +246,7 @@ button:hover {
 
   .campus-container:hover .campus-content,
   .campus-container:focus-within .campus-content {
-    transform: translateY(30rem);
+    transform: translateY(35rem);
   }
 
   .development img,
@@ -288,7 +288,7 @@ button:hover {
   input,
   textarea,
   button {
-    width: 45rem;
+    width: 40rem;
   }
 }
 

@@ -490,7 +490,7 @@ nav .nav-links a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 1.5rem 2rem 1.5rem;
+  padding: 1rem 0 2rem 1.5rem;
   background-color: #f3f5f5;
   border-bottom: 4px #fff solid;
   margin-top: 4px;

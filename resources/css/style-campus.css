@@ -192,7 +192,7 @@ textarea:hover {
 }
 
 button {
-  width: 35rem;
+  width: 25%;
   height: 4rem;
   border: 1px solid #000;
   background-color: #eec900;
@@ -230,7 +230,7 @@ button:hover {
 @media only screen and (min-width: 200px) and (max-width: 600px) {
   .campus-container {
     width: 95%;
-    height: 40vh;
+    height: 30vh;
     margin: 0 auto;
     padding: 1.5rem auto;
     overflow: scroll;
@@ -246,10 +246,10 @@ button:hover {
 
   .campus-container:hover .campus-content,
   .campus-container:focus-within .campus-content {
-    transform: translateY(35rem);
+    transform: translateY(40rem);
   }
 
-  .developmbent img,
+  .development img,
   .future img {
     display: none;
   }
@@ -286,7 +286,8 @@ button:hover {
   }
 
   input,
-  textarea {
+  textarea,
+  button {
     width: 90%;
   }
 }

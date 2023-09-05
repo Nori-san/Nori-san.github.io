@@ -230,7 +230,7 @@ button:hover {
 @media only screen and (min-width: 200px) and (max-width: 600px) {
   .campus-container {
     width: 95%;
-    height: 30vh;
+    height: 40vh;
     margin: 0 auto;
     padding: 1.5rem auto;
     overflow: scroll;
@@ -246,7 +246,7 @@ button:hover {
 
   .campus-container:hover .campus-content,
   .campus-container:focus-within .campus-content {
-    transform: translateY(40rem);
+    transform: translateY(45rem);
   }
 
   .development img,
@@ -292,7 +292,7 @@ button:hover {
   input,
   textarea,
   button {
-    width: 100%;
+    width: 30rem;
     padding: 0 1.5rem;
   }
 }

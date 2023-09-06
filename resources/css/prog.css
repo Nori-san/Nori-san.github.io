@@ -1,8 +1,14 @@
 .wrapper {
   max-width: 1000px;
   width: 60%;
-  margin: 0 auto;
-  padding: 2rem 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .wrapper p {
@@ -12,8 +18,6 @@
 .frontend,
 .fullstack,
 .website {
-  display: flex;
-  flex-direction: row;
   background-color: #ddd;
   text-align: right;
 }
@@ -21,8 +25,6 @@
 .backend,
 .iOS,
 .datasci {
-  display: flex;
-  flex-direction: row;
   background-color: #eec900;
 }
 
@@ -30,16 +32,14 @@
   margin-bottom: 0.5rem;
 }
 
-a .anchor {
+a.anchor {
   top: -80px;
   position: relative;
 }
 
-.wrapper img {
+.image img {
   max-width: 400px;
   width: 35%;
-  margin: 2rem;
-  align-content: center;
 }
 
 .left {

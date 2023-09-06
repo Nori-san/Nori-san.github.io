@@ -13,6 +13,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   position: sticky;
+
   padding: 1.5rem 1.5rem;
   top: 0;
   background-color: #eec900;

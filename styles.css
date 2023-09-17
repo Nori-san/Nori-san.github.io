@@ -108,7 +108,7 @@
 
 .circle {
   position: absolute;
-  background-color: blue;
+  background-color: green;
   animation: circle 2s linear forwards;
   border-radius: 50%;
 }
@@ -117,4 +117,8 @@
   100% {
     transform: scale(0);
   }
+}
+
+h1 {
+  font-size: 5rem;
 }

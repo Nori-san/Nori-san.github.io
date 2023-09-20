@@ -89,7 +89,7 @@
 let playing = false;
 let hits = 0;
 let missed = 0;
-let accuracy = 100;
+let accuracy = 0;
 let time = 0;
 
 const startBtn = document.querySelector("#start");
@@ -97,27 +97,84 @@ const board = document.querySelector("#board");
 const hitsEl = document.querySelector("#hits");
 const accuracyEl = document.querySelector("#accuracy");
 const timeEl = document.querySelector("#time");
+const welcome = document.querySelector("#welcome");
+const highscoreTableBody = document.getElementById("highscoreTableBody");
+const resetBtn = document.querySelector("#reset");
+const easyBtn = document.querySelector("#easy");
+const mediumBtn = document.querySelector("#medium");
+const hardBtn = document.querySelector("#hard");
+const expertBtn = document.querySelector("#expert");
 
+displayHighscore();
 let timer;
+let currentDifficulty = 0; // Initialize currentDifficulty to 0
+
+// Add event listeners to difficulty buttons
+document.getElementById("easy").addEventListener("click", () => {
+  toggleButtonState(easyBtn, 1);
+});
+document.getElementById("medium").addEventListener("click", () => {
+  toggleButtonState(mediumBtn, 2);
+});
+document.getElementById("hard").addEventListener("click", () => {
+  toggleButtonState(hardBtn, 3);
+});
+document.getElementById("expert").addEventListener("click", () => {
+  toggleButtonState(expertBtn, 4);
+});
+
+// Function to handle button state
+function toggleButtonState(selectedButton, difficulty) {
+  const buttons = [easyBtn, mediumBtn, hardBtn, expertBtn];
+  const disabled = selectedButton.getAttribute("disabled") === "true";
+
+  if (disabled || difficulty === currentDifficulty) {
+    // If the selected button is already disabled or it's the same difficulty as the current one, enable all buttons and set currentDifficulty to 0.
+    buttons.forEach((button) => {
+      button.removeAttribute("disabled");
+    });
+    currentDifficulty = 0;
+  } else {
+    buttons.forEach((button) => {
+      if (button !== selectedButton) {
+        button.setAttribute("disabled", true);
+      }
+    });
+    currentDifficulty = difficulty;
+  }
+}
 
 // Add a click event listener to the "Start Game" button
 startBtn.addEventListener("click", () => {
   startGame();
 });
 
+// Add a click event listener to the "Reset  Score" button
+resetBtn.addEventListener("click", () => {
+  resetScore();
+});
+
 function startGame() {
+  document.getElementById("choose-difficulty").style.display = "none";
+  document.getElementById("easy").style.display = "none";
+  document.getElementById("medium").style.display = "none";
+  document.getElementById("hard").style.display = "none";
+  document.getElementById("expert").style.display = "none";
+
   startBtn.style.display = "none"; //hides the start game button
+  welcome.style.display = "none";
+  resetBtn.style.display = "none";
   // Initialize game variables and start creating random circles
   playing = true;
   hits = 0;
   missed = 0;
-  accuracy = 100;
+  accuracy = 0;
   hitsEl.textContent = hits;
   accuracyEl.textContent = `${accuracy}%`;
   createRandomCircle();
 
   // Set a 30-second timer
-  let remainingTime = 30;
+  let remainingTime = 2;
   updateTimerDisplay(remainingTime);
 
   timer = setInterval(() => {
@@ -148,7 +205,8 @@ function createRandomCircle() {
   }
 
   const circle = document.createElement("div");
-  const size = getRandomNumber(30, 100);
+  const size = getRandomNumber(50, 100);
+  // const size = 80;
 
   //method available on DOM elements that returns the position and dimensions of the element relative to the viewport
   const { width, height } = board.getBoundingClientRect();
@@ -162,6 +220,17 @@ function createRandomCircle() {
   circle.style.left = `${x}px`;
 
   board.append(circle);
+
+  //Dificulty level settings
+  if (currentDifficulty === 1) {
+    circle.style.animationDuration = "5s";
+  } else if (currentDifficulty === 2) {
+    circle.style.animationDuration = "3s";
+  } else if (currentDifficulty === 3) {
+    circle.style.animationDuration = "2s";
+  } else {
+    circle.style.animationDuration = "1s";
+  }
 
   // Create new circle when the current one disappears
   circle.addEventListener("animationend", () => {
@@ -187,6 +256,7 @@ function createRandomCircle() {
         if (playing) {
           createRandomCircle();
         }
+        calculateAccuracy();
       }
     } else {
       // Circle missed when clicked
@@ -206,7 +276,7 @@ function addMissed() {
 
 function calculateAccuracy() {
   if (hits + missed === 0) {
-    accuracy = 100; // Prevent division by zero
+    accuracy = 0; // Prevent division by zero
   } else {
     accuracy = (hits / (hits + missed)) * 100;
   }
@@ -222,6 +292,49 @@ function getRandomNumber(min, max) {
 //function that the game is over
 function gameOver() {
   playing = false;
-  board.innerHTML = "<h1>Game Over</h1>";
-  startBtn.style.display = "block";
+
+  timeEl.textContent = "00:00";
+
+  highScoresJson.push(hits);
+  highScoresJson.sort((a, b) => b - a);
+  highScoresJson.splice(10);
+  localStorage.setItem("highScores", JSON.stringify(highScoresJson));
+  displayHighscore();
+
+  board.innerHTML = `
+  <h1>Game Over</h1>
+  <button class="btn" id="play-again">Play Again</button>`;
+
+  // Add a click event listener to the "Play Again" button
+  const playAgainBtn = document.querySelector("#play-again");
+
+  playAgainBtn.addEventListener("click", () => {
+    window.location.reload(); // Reload the page to start a new game
+  });
+
+  // Add a click event listener to the "Reset Score" button
+  const resetScoreBtn = document.querySelector("#reset-highscore");
+
+  resetScoreBtn.addEventListener("click", () => {
+    resetScore();
+  });
+}
+
+function displayHighscore() {
+  highScoresJson = JSON.parse(localStorage.getItem("highScores")) || [];
+
+  highscoreTableBody.innerHTML = highScoresJson
+    .map(
+      (score, index) =>
+        `<tr><th scope="col">${
+          index + 1
+        }</th><th scope="col">${score}</th></tr>`
+    )
+    .join("");
+}
+
+//reset high score
+function resetScore() {
+  localStorage.removeItem("highScores");
+  displayHighscore();
 }

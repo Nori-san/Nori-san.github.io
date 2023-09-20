@@ -174,7 +174,7 @@ function startGame() {
   createRandomCircle();
 
   // Set a 30-second timer
-  let remainingTime = 2;
+  let remainingTime = 30;
   updateTimerDisplay(remainingTime);
 
   timer = setInterval(() => {
@@ -205,7 +205,7 @@ function createRandomCircle() {
   }
 
   const circle = document.createElement("div");
-  const size = getRandomNumber(50, 100);
+  const size = getRandomNumber(40, 100);
   // const size = 80;
 
   //method available on DOM elements that returns the position and dimensions of the element relative to the viewport
@@ -238,7 +238,7 @@ function createRandomCircle() {
     if (playing) {
       createRandomCircle();
       // If a circle disappears before being clicked, it's counted as a miss
-      addMissed();
+      missed++;
       // Recalculate accuracy
       calculateAccuracy();
     }
@@ -267,11 +267,6 @@ function createRandomCircle() {
     // Show hits on the document
     hitsEl.textContent = hits;
   });
-}
-
-function addMissed() {
-  // Increase missed count by 1
-  missed++;
 }
 
 function calculateAccuracy() {
@@ -310,13 +305,6 @@ function gameOver() {
 
   playAgainBtn.addEventListener("click", () => {
     window.location.reload(); // Reload the page to start a new game
-  });
-
-  // Add a click event listener to the "Reset Score" button
-  const resetScoreBtn = document.querySelector("#reset-highscore");
-
-  resetScoreBtn.addEventListener("click", () => {
-    resetScore();
   });
 }
 

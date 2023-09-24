@@ -1,328 +1,277 @@
-// // let timerCount = 30; // Initial countdown timer value
-// // let score = 0; // Initialize the score
-// // let timerInterval; // Interval for updating the timer
-// // let gameRunning = false; // Variable to track if the game is running
+const startBtn = document.querySelector("#start"),
+  screens = document.querySelectorAll(".screen"),
+  timer = document.querySelector("#timer"),
+  difficultyLevel = document.querySelector("#difficulty"),
+  timeEl = document.querySelector("#time"),
+  board = document.querySelector("#board"),
+  hitsEl = document.querySelector("#hits"),
+  accuracyEl = document.querySelector("#accuracy"),
+  hitsOverEl = document.querySelector("#hits-over"),
+  accuracyOverEl = document.querySelector("#accuracy-over"),
+  life = document.querySelectorAll(".life"),
+  dead = document.querySelectorAll(".dead"),
+  restartBtns = document.querySelectorAll(".restart"),
+  fullScreenBtn = document.querySelector("#fullscreen"),
+  minimizeBtn = document.querySelector("#minimize");
 
-// // function startGame() {
-// //   const timerElement = document.getElementById("timer");
-// //   if (timerElement.innerText !== "30" || gameRunning) {
-// //     // Game already started or is running, do nothing
-// //     return;
-// //   }
+let time = 0,
+  unlimited = false,
+  difficulty = 0,
+  playing = false,
+  hits = 0,
+  missed = 0,
+  accuracy = 0,
+  interval;
 
-// //   // Reset score to zero at the start of each game
-// //   score = 0;
-
-// //   gameRunning = true; // Set game to running
-// //   timerElement.innerText = timerCount;
-// //   timerInterval = setInterval(updateTimer, 1000);
-// // }
-
-// // Get the game grid element by its ID
-// // const gameGrid = document.getElementById("gameGrid");
-
-// // function generateGameGrid() {
-// //   gameGrid.innerHTML = "";
-
-// //   const circles = [];
-
-// //   for (let i = 0; i < 25; i++) {
-// //     const circle = document.createElement("div");
-// //     circle.classList.add("circle");
-// //     circles.push(circle);
-// //     gameGrid.appendChild(circle);
-// //   }
-
-// //   // Place the first circle in the middle
-// //   const middleIndex = Math.floor(circles.length / 2);
-// //   circles[middleIndex].classList.add("active");
-// // }
-
-// // Event listener for game grid clicks
-// // gameGrid.addEventListener("click", (event) => {
-// //   const target = event.target;
-// //   if (!target.classList.contains("active")) return;
-
-// //   if (!gameRunning) {
-// //     startGame();
-// //   }
-
-// //   target.classList.remove("active");
-// //   score++;
-// //   activateRandomCircle();
-// // });
-
-// function updateTimer() {
-//   timerCount--;
-//   document.getElementById("timer").innerText = timerCount;
-//   if (timerCount === 0) {
-//     clearInterval(timerInterval);
-//     resetGame();
-//   }
-// }
-
-// // function activateRandomCircle() {
-// //   const circles = document.querySelectorAll(".circle");
-// //   circles.forEach((circle) => circle.classList.remove("active"));
-
-// //   const randomIndex = Math.floor(Math.random() * circles.length);
-// //   circles[randomIndex].classList.add("active");
-// // }
-
-// // function resetGame() {
-// //   timerCount = 30; // Reset the timer
-// //   document.getElementById("timer").innerText = timerCount;
-// //   gameRunning = false; // Reset game state to not running
-
-// //   // Display game over message with the score
-// //   const gameOverMessage = document.getElementById("gameOverMessage");
-// //   gameOverMessage.innerText = `Game over! Your score was ${score}`;
-// //   gameOverMessage.style.display = "block";
-
-// //   generateGameGrid(); // Regenerate the game grid for a new game
-// // }
-
-// // Initially generate the game grid
-// // generateGameGrid();
-
-// /* ******************************************************************************************* */
-let playing = false;
-let hits = 0;
-let missed = 0;
-let accuracy = 0;
-let time = 0;
-
-const startBtn = document.querySelector("#start");
-const board = document.querySelector("#board");
-const hitsEl = document.querySelector("#hits");
-const accuracyEl = document.querySelector("#accuracy");
-const timeEl = document.querySelector("#time");
-const welcome = document.querySelector("#welcome");
-const highscoreTableBody = document.getElementById("highscoreTableBody");
-const resetBtn = document.querySelector("#reset");
-const easyBtn = document.querySelector("#easy");
-const mediumBtn = document.querySelector("#medium");
-const hardBtn = document.querySelector("#hard");
-const expertBtn = document.querySelector("#expert");
-
-displayHighscore();
-let timer;
-let currentDifficulty = 0; // Initialize currentDifficulty to 0
-
-// Add event listeners to difficulty buttons
-document.getElementById("easy").addEventListener("click", () => {
-  toggleButtonState(easyBtn, 1);
-});
-document.getElementById("medium").addEventListener("click", () => {
-  toggleButtonState(mediumBtn, 2);
-});
-document.getElementById("hard").addEventListener("click", () => {
-  toggleButtonState(hardBtn, 3);
-});
-document.getElementById("expert").addEventListener("click", () => {
-  toggleButtonState(expertBtn, 4);
+//When startgame click screen procede to timer screen
+startBtn.addEventListener("click", () => {
+  screens[0].classList.add("up");
 });
 
-// Function to handle button state
-function toggleButtonState(selectedButton, difficulty) {
-  const buttons = [easyBtn, mediumBtn, hardBtn, expertBtn];
-  const disabled = selectedButton.getAttribute("disabled") === "true";
+//When clicked the screen goes up to the difficulty screen
+timer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("time-btn")) {
+    time = parseInt(e.target.getAttribute("data-time"));
+    unlimited = e.target.getAttribute("data-unlimited");
+    screens[1].classList.add("up");
+  }
+});
 
-  if (disabled || difficulty === currentDifficulty) {
-    // If the selected button is already disabled or it's the same difficulty as the current one, enable all buttons and set currentDifficulty to 0.
-    buttons.forEach((button) => {
-      button.removeAttribute("disabled");
-    });
-    currentDifficulty = 0;
-  } else {
-    buttons.forEach((button) => {
-      if (button !== selectedButton) {
-        button.setAttribute("disabled", true);
+//Choosing Difficulty then start game
+difficultyLevel.addEventListener("click", (e) => {
+  if (e.target.classList.contains("difficulty-btn")) {
+    difficulty = parseInt(e.target.getAttribute("data-difficulty"));
+    screens[2].classList.add("up");
+    startGame();
+  }
+});
+
+//Start game
+function startGame() {
+  for (let i = 0; i < 3; i++) {
+    life[i].classList.remove("dead");
+  }
+  playing = true;
+  interval = setInterval(decreaseTime, 1000);
+  createRandomCircle();
+
+  if (difficulty === 4) {
+    setTimeout(() => {
+      for (let i = 0; i < 2; i++) {
+        createRandomCircle();
       }
-    });
-    currentDifficulty = difficulty;
+    }, 10000); // Add 2 circles after 10 seconds
+    setTimeout(() => {
+      for (let i = 0; i < 3; i++) {
+        createRandomCircle();
+      }
+    }, 20000); // Add 3 circles after 20 seconds
+  }
+
+  if (difficulty === 3) {
+    const durations = ["2s", "1s"];
+    let interval = 2000; // Initial interval
+
+    for (let i = 0; i < 12; i++) {
+      setTimeout(() => {
+        setAnimationDuration(durations[i % 2]);
+      }, interval);
+
+      // Update the interval for the next setTimeout
+      interval += 2000; // Alternate between 2s and 1s
+    }
   }
 }
 
-// Add a click event listener to the "Start Game" button
-startBtn.addEventListener("click", () => {
-  startGame();
-});
+// Running the timer
+function decreaseTime() {
+  //When unlimited timer is selected
+  if (unlimited) {
+    setTime("∞");
+    return;
+  }
+  //game over when timer reach 0
+  if (time === 0) {
+    finishGame();
+  }
+  let current = --time;
+  let ms = time * 1000;
+  let mins = Math.floor(ms / (1000 * 60));
+  let secs = Math.floor((ms % (1000 * 60)) / 1000);
 
-// Add a click event listener to the "Reset  Score" button
-resetBtn.addEventListener("click", () => {
-  resetScore();
-});
+  //add trailing zero
+  secs = secs < 10 ? "0" + secs : secs;
+  mins = mins < 10 ? "0" + mins : mins;
 
-function startGame() {
-  document.getElementById("choose-difficulty").style.display = "none";
-  document.getElementById("easy").style.display = "none";
-  document.getElementById("medium").style.display = "none";
-  document.getElementById("hard").style.display = "none";
-  document.getElementById("expert").style.display = "none";
-
-  startBtn.style.display = "none"; //hides the start game button
-  welcome.style.display = "none";
-  resetBtn.style.display = "none";
-  // Initialize game variables and start creating random circles
-  playing = true;
-  hits = 0;
-  missed = 0;
-  accuracy = 0;
-  hitsEl.textContent = hits;
-  accuracyEl.textContent = `${accuracy}%`;
-  createRandomCircle();
-
-  // Set a 30-second timer
-  let remainingTime = 30;
-  updateTimerDisplay(remainingTime);
-
-  timer = setInterval(() => {
-    remainingTime--;
-    if (remainingTime === 0) {
-      clearInterval(timer);
-      gameOver(); // Call the gameOver function after 30 seconds
-    } else {
-      updateTimerDisplay(remainingTime);
-    }
-  }, 1000);
+  setTime(`${mins}:${secs}`);
 }
 
-function updateTimerDisplay(remainingTime) {
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
-  //converts the minutes and seconds into a string.
-  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
-  timeEl.textContent = formattedTime;
+function setTime(time) {
+  timeEl.innerHTML = time;
 }
 
 function createRandomCircle() {
-  // return when Do nothing
+  //playing false do nothing
   if (!playing) {
     return;
   }
 
   const circle = document.createElement("div");
-  const size = getRandomNumber(40, 100);
-  // const size = 80;
+  const size = getRandomNumber(50, 120);
+  const colors = ["#03DAC6", "#FF0266", "#b3ff00", "#ccff00", "#9D00FF"];
 
-  //method available on DOM elements that returns the position and dimensions of the element relative to the viewport
   const { width, height } = board.getBoundingClientRect();
-  //random locations of the circle
   const x = getRandomNumber(0, width - size);
   const y = getRandomNumber(0, height - size);
+
   circle.classList.add("circle");
   circle.style.width = `${size}px`;
   circle.style.height = `${size}px`;
   circle.style.top = `${y}px`;
   circle.style.left = `${x}px`;
 
+  let color = Math.floor(Math.random() * 5);
+  circle.style.background = `${colors[color]}`;
   board.append(circle);
 
   //Dificulty level settings
-  if (currentDifficulty === 1) {
-    circle.style.animationDuration = "5s";
-  } else if (currentDifficulty === 2) {
+  if (difficulty === 1) {
     circle.style.animationDuration = "3s";
-  } else if (currentDifficulty === 3) {
+  } else if (difficulty === 2) {
+    circle.style.animationDuration = "2.5s";
+  } else if (difficulty === 3) {
     circle.style.animationDuration = "2s";
   } else {
-    circle.style.animationDuration = "1s";
+    circle.style.animationDuration = "2s";
   }
 
-  // Create new circle when the current one disappears
+  //create new circle when current disappears
   circle.addEventListener("animationend", () => {
     circle.remove();
-    if (playing) {
-      createRandomCircle();
-      // If a circle disappears before being clicked, it's counted as a miss
-      missed++;
-      // Recalculate accuracy
-      calculateAccuracy();
-    }
+    createRandomCircle();
+
+    //if circle dissapears before clicked its counted as a miss
+    addMissed();
+    //recalculate accuracy
+    calculateAccuracy();
   });
 
-  // Add event when circle is clicked
-  circle.addEventListener("click", (e) => {
+  //add event when circle is clicked
+  board.addEventListener("click", (e) => {
     if (e.target.classList.contains("circle")) {
       if (e.target === circle) {
-        // Increase hits by 1
+        //increase hits by 1
         hits++;
-        // Remove circle
+        //remove circle
         e.target.remove();
-        // Create a new circle
-        if (playing) {
-          createRandomCircle();
-        }
-        calculateAccuracy();
+        //create new circle
+        createRandomCircle();
       }
     } else {
-      // Circle missed when clicked
+      //circle missed when clicked
       missed++;
-      // Recalculate accuracy
-      calculateAccuracy();
     }
-    // Show hits on the document
-    hitsEl.textContent = hits;
+    //show hits on document
+    hitsEl.innerHTML = hits;
+    //add accuracy on document
+    calculateAccuracy();
+  });
+}
+
+function setAnimationDuration(duration) {
+  const circles = document.querySelectorAll(".circle");
+  circles.forEach((circle) => {
+    circle.style.animationDuration = duration;
   });
 }
 
 function calculateAccuracy() {
-  if (hits + missed === 0) {
-    accuracy = 0; // Prevent division by zero
-  } else {
-    accuracy = (hits / (hits + missed)) * 100;
-  }
+  accuracy = (hits / (hits + missed)) * 100;
   accuracy = accuracy.toFixed(2);
-  accuracyEl.textContent = `${accuracy}%`;
+  accuracyEl.innerHTML = `${accuracy}%`;
 }
 
-//function to get a random number within a max and min range
+//get a random number between min and max
 function getRandomNumber(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
-//function that the game is over
-function gameOver() {
+function finishGame() {
   playing = false;
+  clearInterval(interval);
+  board.innerHTML = "";
+  screens[3].classList.add("up");
+  hitsEl.innerHTML = 0;
+  timeEl.innerHTML = "00:00";
+  accuracyEl.innerHTML = "0%";
 
-  timeEl.textContent = "00:00";
-
-  highScoresJson.push(hits);
-  highScoresJson.sort((a, b) => b - a);
-  highScoresJson.splice(10);
-  localStorage.setItem("highScores", JSON.stringify(highScoresJson));
-  displayHighscore();
-
-  board.innerHTML = `
-  <h1>Game Over</h1>
-  <button class="btn" id="play-again">Play Again</button>`;
-
-  // Add a click event listener to the "Play Again" button
-  const playAgainBtn = document.querySelector("#play-again");
-
-  playAgainBtn.addEventListener("click", () => {
-    window.location.reload(); // Reload the page to start a new game
-  });
+  //update stats when game over
+  hitsOverEl.innerHTML = hits;
+  accuracyOverEl.innerHTML = `${accuracy}%`;
 }
 
-function displayHighscore() {
-  highScoresJson = JSON.parse(localStorage.getItem("highScores")) || [];
-
-  highscoreTableBody.innerHTML = highScoresJson
-    .map(
-      (score, index) =>
-        `<tr><th scope="col">${
-          index + 1
-        }</th><th scope="col">${score}</th></tr>`
-    )
-    .join("");
+// Decreasing Lives when missed
+function addMissed() {
+  //Verify how many life remaining
+  if (
+    life[0].classList.contains("dead") &&
+    life[1].classList.contains("dead") &&
+    life[2].classList.contains("dead")
+  ) {
+    finishGame();
+  } else {
+    missed++;
+    //remove a heart when missed
+    for (let i = 0; i < life.length; i++) {
+      if (!life[i].classList.contains("dead")) {
+        life[i].classList.add("dead");
+        break; //break after adding to one dont add to others
+      }
+    }
+  }
 }
 
-//reset high score
-function resetScore() {
-  localStorage.removeItem("highScores");
-  displayHighscore();
+restartBtns.forEach((btn) => {
+  btn.addEventListener("click", restartGame);
+});
+
+function restartGame() {
+  finishGame();
+  screens[1].classList.remove("up");
+  screens[2].classList.remove("up");
+  screens[3].classList.remove("up");
+  time = 0;
+  unlimited = false;
+  difficulty = 0;
+  playing = false;
+  hits = 0;
+  missed = 0;
+  accuracy = 0;
+  for (let i = 0; i < 3; i++) {
+    life[i].classList.remove("dead");
+  }
+}
+
+fullScreenBtn.addEventListener("click", fullScreen);
+
+let el = document.documentElement;
+
+function fullScreen() {
+  if (el.requestFullscreen) {
+    el.requestFullscreen();
+  } else {
+    fullScreenBtn.style.display = "none";
+    minimizeBtn.style.display = "block";
+  }
+}
+
+minimizeBtn.addEventListener("click", minimize);
+
+function minimize() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else {
+    minimizeBtn.style.display = "none";
+    fullScreenBtn.style.display = "block";
+  }
 }
